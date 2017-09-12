@@ -1,2 +1,6 @@
-class Api::SearchController < ApplicationController
+class Api::SearchController < Api::ApiController
+
+  def index
+
+  end
 end
