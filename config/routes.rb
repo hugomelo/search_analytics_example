@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :search
-    resources :search_analytics, only: [:index, :show]
+    resources :search_analytics, only: [:index]
+    get "search_analytics/delete_all", to: "search_analytics#delete_all"
   end
 end

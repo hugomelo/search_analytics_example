@@ -23,33 +23,48 @@ export default class Analytics extends React.Component {
     setTimeout(this.fetchAnalytics.bind(this), 3000)
   }
 
+  handleClearStats(e) {
+    e.preventDefault()
+    fetch("/api/search_analytics/delete_all.json")
+      .then( (response) => {
+        return response.json() })
+      .then( (json) => {
+        this.setState(json)
+      })
+  }
+
   render() {
     let body = this.state.search_analytics.map((analytic) => {
       return (
         <tr key={analytic.id}>
-          <th>
+          <td>
             { analytic.key }
-          </th>
-          <th>
+          </td>
+          <td>
             { analytic.quantity }
-          </th>
+          </td>
         </tr>
       )
     })
     return (
-      <table className="search_analytics">
-        <thead>
-          <tr>
-            <th>
-              Search Phrase
-            </th>
-            <th>
-              Count
-            </th>
-          </tr>
-        </thead>
-        <tbody>{ body }</tbody>
-      </table>
+      <div>
+        <table className="search_analytics">
+          <thead>
+            <tr>
+              <th>
+                Search Phrase
+              </th>
+              <th>
+                Count
+              </th>
+            </tr>
+          </thead>
+          <tbody>{ body }</tbody>
+        </table>
+        <form>
+          <button onClick={this.handleClearStats} >Clear Stats</button>
+        </form>
+      </div>
     )
   }
 }
