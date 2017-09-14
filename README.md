@@ -1,24 +1,26 @@
-# README
+# search_analytics_example
+An example of a fast search analytics using Rails 5.1 and ReactJS | Example: https://searchanalyticsexample.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Installation
+Since this app is a [Rails](http://rubyonrails.org) 5.1 application, you need to run the following after downloading the code:
 
-Things you may want to cover:
+  1. `$ cd search_analytics_example`
+  2. `$ bundler`
+  3. `$ bundle exec rake db:create db:migrate`
 
-* Ruby version
+You may want to load sample data into database:
 
-* System dependencies
+`$ bundle exec rake db:seed`
 
-* Configuration
+#### Starting the server
+Install foreman gem using the command: `gem install foreman`.
 
-* Database creation
+**You need to set PORT to 3000 before running foreman**
 
-* Database initialization
+Start all development servers:
 
-* How to run the test suite
+`$ foreman start -e .env`
 
-* Services (job queues, cache servers, search engines, etc.)
+Now, you may visit the following URLs:
 
-* Deployment instructions
-
-* ...
+* Application Server: http://localhost:3000/
