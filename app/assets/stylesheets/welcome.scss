@@ -4,7 +4,7 @@
 
 #welcome {
   width: 50%;
-  margin: 15% auto 0 auto;
+  margin: 30px auto 0 auto;
   padding-bottom: 50px;
 
   input {
@@ -59,13 +59,28 @@
   }
   .search_analytics {
     margin-top: 30px;
+    border-spacing: 0;
+
     thead {
-      background-color: lightgrey;
+      background-color: transparent;
+      th {
+        border-bottom: 2px solid #555;
+      }
+      th:first-child {
+        min-width: 200px;
+      }
     }
-    th {
+    td,th {
       text-align: left;
       border: none;
       padding: 10px;
+      border-bottom: 1px solid #ccc;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #welcome {
+    width: 90%;
   }
 }
