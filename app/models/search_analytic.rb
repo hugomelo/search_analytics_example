@@ -7,6 +7,7 @@ class SearchAnalytic < ApplicationRecord
 
   def self.check_new_search query_key, last_query
     current_query = $redis.get query_key
+
     # avoid saving analytics while still typing or erasing a query on input
     return if current_query != last_query && (last_query.include?(current_query) || current_query.include?(last_query))
 

@@ -5,6 +5,8 @@ import SearchResult from '../components/search_result'
 import Analytics from '../components/analytics'
 var crypto = require('crypto')
 
+// this is the main component which controls the sub-components
+// The states are usually lifted up here to share states
 class Welcome extends React.Component {
   constructor(props) {
     super(props)
