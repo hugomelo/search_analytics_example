@@ -13,5 +13,8 @@ class SearchAnalytic < ApplicationRecord
     analytic = SearchAnalytic.find_or_initialize_by key: last_query
     analytic.quantity += 1
     analytic.save!
+
+    # remove key
+    $redis.del query_key
   end
 end
