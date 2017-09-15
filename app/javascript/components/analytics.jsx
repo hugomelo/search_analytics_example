@@ -20,7 +20,7 @@ export default class Analytics extends React.Component {
       .then( (json) => {
         this.setState(json)
       })
-    setTimeout(this.fetchAnalytics.bind(this), 3000)
+    setTimeout(this.fetchAnalytics.bind(this), 1000)
   }
 
   handleClearStats(e) {
