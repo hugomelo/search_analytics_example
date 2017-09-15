@@ -39,6 +39,10 @@
       padding: 10px;
       margin: 8px;
       float: left;
+      cursor: pointer;
+      &:hover {
+        background-color: #F0F0F0;
+      }
     }
     .clear {
       clear: both;
