@@ -27,8 +27,5 @@ class SearchAnalytic < ApplicationRecord
     analytic.update quantity: analytic.quantity + 1
 
     $redis.set "last_analytic:"+token, analytic.id
-
-    # remove key
-    $redis.del "search:"+token
   end
 end
