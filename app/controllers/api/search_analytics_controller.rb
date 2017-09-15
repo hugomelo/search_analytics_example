@@ -13,7 +13,7 @@ class Api::SearchAnalyticsController < Api::ApiController
   private
 
   def load_and_render
-    @search_analytics = SearchAnalytic.order("quantity DESC").all
+    @search_analytics = SearchAnalytic.order("quantity DESC").where("quantity > 0").all
     render :index
   end
 end

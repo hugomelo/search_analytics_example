@@ -10,9 +10,6 @@ export default class SearchBar extends React.Component {
   handleInputChange(e) {
     this.props.onInput(e.target.value);
   }
-  componentDidUpdate() {
-    console.log(this.refs)
-  }
 
   render() {
     return (
