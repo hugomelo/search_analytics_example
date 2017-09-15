@@ -9,7 +9,7 @@ class SearchAnalytic < ApplicationRecord
   # to group queries together. Keeps on Redis the last analytics
   # and update it if user decides to complement the query
   def self.check_new_search token, last_query
-    current_query = $redis.get "search:"+token || ""
+    current_query = $redis.get("search:"+token).to_s
 
     # avoid saving analytics while still typing or erasing a query on input
     return if current_query != last_query && (last_query.include?(current_query) || current_query.include?(last_query))
