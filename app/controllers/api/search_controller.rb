@@ -8,6 +8,6 @@ class Api::SearchController < Api::ApiController
 
     # keep track of search counts
     $redis.set "search:"+params[:token], params[:q]
-    SearchAnalyticsWorker.perform_in(5.seconds, params[:token], params[:q])
+    SearchAnalyticsWorker.perform_async(params[:token], params[:q])
   end
 end

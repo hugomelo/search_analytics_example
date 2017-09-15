@@ -12,15 +12,19 @@ class SearchAnalytic < ApplicationRecord
     current_query = $redis.get("search:"+token).to_s
 
     # avoid saving analytics while still typing or erasing a query on input
-    return if current_query != last_query && (last_query.include?(current_query) || current_query.include?(last_query))
+    return if current_query =~ /^#{last_query}.+/
 
     last_analytic = $redis.get "last_analytic:"+token
     last_analytic = SearchAnalytic.where(id: last_analytic).first if last_analytic.present?
 
     # if next key is a complement of before, it gives the tracking to the newer key
-    if last_analytic && last_query.start_with?(last_analytic.key)
-      analytic = SearchAnalytic.find last_analytic.id
-      analytic.update quantity: analytic.quantity - 1
+    if last_analytic
+      return if last_analytic.key.start_with?(last_query)
+
+      if last_query.start_with?(last_analytic.key)
+          analytic = SearchAnalytic.find last_analytic.id
+          analytic.update quantity: analytic.quantity - 1
+      end
     end
 
     analytic = SearchAnalytic.find_or_initialize_by key: last_query
